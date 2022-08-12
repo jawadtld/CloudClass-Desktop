@@ -28,6 +28,7 @@ import recordIcon from './assets/image/Frame 994.png';
 import messageWithDot from './assets/image/Group 985405.png';
 import handImg from './assets/image/Group (5).png';
 import arrowLeft from './assets/image/arrow-wht.png';
+import micOn from './assets/image/Frame 989.png';
 import { StreamWindowUIStore } from '@/infra/stores/common/stream-window';
 import React, { useMemo } from 'react';
 import { Room1v1StreamsContainer } from '../../containers/stream/room-1v1-player';
@@ -187,9 +188,9 @@ export const MidClassScenario = observer(() => {
                                         </div>
                                         <div onClick={toggleMuteSelf} className="share-btn">
                                             <a href="">
-                                                <img src={micoff} alt="" />
+                                                <img src={micStatus?micoff:micOn} alt="" />
                                             </a>
-                                            <p> Off Mic </p>
+                                            <p>{micStatus?'Off Mic':'On Mic'}</p>
                                         </div>
                                         <div onClick={toggleSelfVideo} className="share-btn">
                                             <a href="">
