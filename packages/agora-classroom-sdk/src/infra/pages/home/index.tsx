@@ -98,7 +98,7 @@ export const HomePage = observer(() => {
 
   const roomUuid = useMemo(() => {
     if (!debug) {
-      return `${roomName}${scenario}`;
+      return `${roomName}`;
     }
     return `${roomId}`;
   }, [scenario, roomName, debug, roomId]);
