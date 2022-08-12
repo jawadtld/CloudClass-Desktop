@@ -38,7 +38,7 @@ export class InteractiveRoomStreamUIStore extends StreamUIStore {
 
     const streams = [];
 
-    let carouselStudentList = acceptedList.slice;
+    let carouselStudentList = acceptedList;
     const isInSubRoom = this.classroomStore.groupStore.currentSubRoom;
 
     if (!isInSubRoom) {
