@@ -2340,7 +2340,7 @@ input:checked[type="checkbox"]::before {
 
 .golive-body-wrap {
 	background-color: rgba(81, 81, 81, 1);
-	border-top: 15px solid rgba(239, 149, 13, 1);
+	border-top: 10px solid rgba(239, 149, 13, 1);
 	border-bottom: 15px solid rgba(239, 149, 13, 1);
 }
 
@@ -2352,8 +2352,8 @@ input:checked[type="checkbox"]::before {
 	justify-content: space-between;
 	padding-top: 65px;
 	padding-left: 50px;
-	margin-right: 65px;
-	margin-bottom: 20px;
+	padding-right: 50px;
+	margin-bottom: 14px;
 }
 
 .live-name-wrap {
@@ -2434,7 +2434,10 @@ input:checked[type="checkbox"]::before {
 }
 
 .student-right-wrap {
-	margin-left: 50px;
+	/* margin-left: 50px; */
+	margin-left: 0;
+    width: 30%;
+    padding-left: 50px;
 }
 
 .live-inner-wrap {
@@ -2456,6 +2459,9 @@ input:checked[type="checkbox"]::before {
 	margin-bottom: 25px;
 }
 
+.live-stud-card .video-player {
+	border-radius: 6px;
+}
 .live-stud-card1 {
 	background-image: url("./assets/image/Rectangle\ 4471.png");
 	width: 95px;
@@ -2587,14 +2593,14 @@ input:checked[type="checkbox"]::before {
 .live-body-wrap {
 	display: flex;
 	justify-content: space-between;
-	margin-right: 65px;
+	margin-right: 50px;
 	margin-left: 50px;
 }
 
 .live-witimg-right {
 	display: flex;
 	flex-wrap: wrap;
-	padding-top: 35px;
+	padding-top: 37px;
 	justify-content: space-between;
 }
 
@@ -2608,19 +2614,29 @@ input:checked[type="checkbox"]::before {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	width: 330px;
+	width: 100%;
 }
 
 .livecls-input-search .form-control {
 	padding-right: 50px;
 	font-size: 14px;
-	height: 45px;
+	height: 46px;
+	background: #FFFFFF;
+	border-radius: 5px;
+	color: #818181;
+	width: 100%;
+	padding: 15px;
+}
+.livecls-input-search .form-control:focus {
+	box-shadow: none;
+	outline:none;
 }
 
 .live-top-right {
 	display: flex;
 	justify-content: center;
-	padding-left: 28%;
+	padding-left: 50px;
+	padding-right: 50px;
 	padding-bottom: 35px;
 	align-items: center;
 }
@@ -2645,10 +2661,12 @@ input:checked[type="checkbox"]::before {
 
 .live-clsimg {
 	display: flex;
+	align-items: center;
+	padding-bottom: 30px;
 }
 
 .arrow-img {
-	padding-right: 30px;
+	padding-right: 26px;
 }
 
 .more-btn-img {
@@ -2674,15 +2692,25 @@ input:checked[type="checkbox"]::before {
 
 .share-p {
 	padding-top: 8px;
-	padding-left: 10px;
+	/* padding-left: 10px; */
 }
 
 .share-btn {
 	padding-right: 55px;
 }
 
+.share-btn a {
+	display: flex;
+	justify-content: center;
+}
 .rounded-circle {
     border-radius: 50%!important;
+}
+
+/* ------------------live video----------- */
+.video-player {
+	height: calc(100vh - 400px);
+	width: 100%;
 }
 
 /* .....................................end modal style............................................ */
@@ -2717,9 +2745,8 @@ input:checked[type="checkbox"]::before {
 
 /* ............................................live-chat....................................................... */
 
-.chat-room-wrap {
-	display: flex;
-	justify-content: space-between;
+.chat-room-wrap .heading {
+	padding-bottom: 12px;
 }
 
 .chat-room-wrap p {
@@ -2730,11 +2757,19 @@ input:checked[type="checkbox"]::before {
 }
 
 .chatrm-right-wrap {
+	/* background: rgba(104, 104, 104, 255);
+	margin-left: 35px;
+	padding: 10px 15px 15px 15px;
+	margin-bottom: 85px;
+	margin-top: 5px; */
+	width: 30%;
+}
+.chatrm-right-wrap .chat-room-right {
 	background: rgba(104, 104, 104, 255);
 	margin-left: 35px;
 	padding: 10px 15px 15px 15px;
 	margin-bottom: 85px;
-	margin-top: 5px;
+	margin-top: 5px; 
 }
 
 .grp-img-txt .rounded-circle {
@@ -5732,6 +5767,16 @@ footer {
 	height: calc(100vh - 400px);
 }
 
+/* additional styles */
+.live-body-wrap .live-teacher-wrap  {
+	width: 70%;
+}
+.live-body-wrap .live-teacher-wrap  .live-top-right {
+	padding-left: 0;
+	padding-right: 0;
+	justify-content: flex-end;
+}
+
 /*........................................................... responsive styleee................................................ */
 
 @media screen and (max-width: 1490px) {
@@ -5810,7 +5855,8 @@ footer {
 	}
 
 	.live-top-right {
-		padding-left: 20%;
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 
 

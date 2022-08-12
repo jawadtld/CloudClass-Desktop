@@ -48,10 +48,10 @@ export const UserSection = observer(() => {
     } = streamUIStore;
     const videoStreamStyle = useMemo(
         () => ({
-            width: 100,
-            height: 100,
+            width: 94,
+            height: 94,
         }),
-        [100, 100],
+        [94, 94],
     );
 
     return <div className="student-right-wrap">
@@ -162,7 +162,10 @@ export const MidClassScenario = observer(() => {
                                 <button className="live-end-btn" data-bs-toggle="modal" data-bs-target="#endclsModal">End class</button>
                             </div>
                         </div>
-                        <div className="live-top-right">
+
+                        <div className="live-body-wrap">
+                            <div className="live-teacher-wrap">
+                            <div className="live-top-right">
                             <a href="">
                                 <img src={handImg} alt="" className="live-hand-img" />
                             </a>
@@ -170,8 +173,6 @@ export const MidClassScenario = observer(() => {
                                 <img src={messageWithDot} alt="" />
                             </a>
                         </div>
-                        <div className="live-body-wrap">
-                            <div className="live-teacher-wrap ">
                                 <div className="live-teach-imgwrap">
                                     <TeacherStream></TeacherStream>
                                 </div>
@@ -182,7 +183,7 @@ export const MidClassScenario = observer(() => {
                                             <a href="">
                                                 <img src={speakerOff} alt="" />
                                             </a>
-                                            <p className="share-p">Mute all students</p>
+                                            <p className="share-p text-center">Mute all <br/>students</p>
                                         </div>
                                         <div onClick={toggleMuteSelf} className="share-btn">
                                             <a href="">
@@ -253,12 +254,18 @@ export const MidClassScenario = observer(() => {
                             </div>
                             {!isBeforeClass && !showMessages && <UserSection></UserSection>}
                             {!isBeforeClass && showMessages && <div className="chatrm-right-wrap">
+                                <div className='chat-room-right'>
                                 <div className="chat-room-wrap">
+                                    <div className="heading d-flex">
                                     <p>Chat room</p>
+                                    </div>
+                                    <div className="chat-popup-icon">
                                     <a href="">
                                         <img src="../image/ant-design_close-circle-outlined.png" alt="" />
                                     </a>
+                                    </div>
                                     <ChatWidgetPC />
+                                </div>
                                 </div>
                             </div>}
                         </div>
