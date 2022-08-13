@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { Card, Popover, SvgImg } from '~components';
 import { throttle } from 'lodash';
 import { useInterval } from '@/infra/hooks/utilites';
+import handImg from './assets/image/Group (5).png';
 
 export interface WaveArmManagerProps extends BaseWaveArmProps {
   hasWaveArmUser: boolean;
@@ -63,10 +64,9 @@ export const WaveArmManager: FC<WaveArmManagerProps> = ({
           borderRadius={borderRadius}
           className={twinkleFlag ? 'card-hands-up-active' : ''}>
           <div className="hands-box-line">
-            <SvgImg
-              type={twinkleFlag ? 'teacher-hands-up-active' : 'teacher-hands-up-before'}
-              size={24}
-            />
+            <a>
+              <img src={handImg} alt="" className="live-hand-img" />
+            </a>
           </div>
           {waveArmCount ? (
             <span className="hands-up-count">{waveArmCount > 99 ? '99+' : waveArmCount}</span>

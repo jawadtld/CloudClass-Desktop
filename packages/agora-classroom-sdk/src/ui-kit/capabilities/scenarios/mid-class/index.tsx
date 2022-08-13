@@ -28,13 +28,13 @@ import shareImg from './assets/image/share-img.png';
 import moreIcon from './assets/image/Group 985340.png';
 import recordIcon from './assets/image/Frame 994.png';
 import messageWithDot from './assets/image/Group 985405.png';
-import handImg from './assets/image/Group (5).png';
 import arrowLeft from './assets/image/arrow-wht.png';
 import micOn from './assets/image/Frame 989.png';
 import whiteBoard from './assets/image/Group 985357.png';
 import screenShare from './assets/image/Vector (4).png';
 import shareImage from './assets/image/chat-more-optin.png';
 import sharePdf from './assets/image/Group 985404.png';
+import closeIcon from './assets/image/Group 985403.png';
 
 
 import { StreamWindowUIStore } from '@/infra/stores/common/stream-window';
@@ -107,7 +107,8 @@ export const MidClassScenario = observer(() => {
     const {
         classroomStore,
         streamWindowUIStore: { containedStreamWindowCoverOpacity },
-        toolbarUIStore
+        shareUIStore,
+        handUpUIStore
     } = useStore();
     const {
         streamUIStore,
@@ -120,6 +121,7 @@ export const MidClassScenario = observer(() => {
     const { whiteboardWidgetActive } = boardStore;
     const { navigationBarUIStore } = useStore();
     const { navigationTitle, currScreenShareTitle, actions, isBeforeClass, startClass, localMicOff } = navigationBarUIStore;
+    const { teacherUuid, waveArm } = handUpUIStore;
 
     // For show messaging status
     const [showMessages, setShowMessages] = React.useState(false);
@@ -171,8 +173,14 @@ export const MidClassScenario = observer(() => {
         setShowShare(false);
     }
 
-    const endClass = () => {
+    const endClass = (e: any) => {
+        e.preventDefault();
         classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+    }
+
+    const handWave = (e: any) => {
+        e.preventDefault();
+        waveArm(teacherUuid,3);
     }
 
     return (
@@ -181,7 +189,7 @@ export const MidClassScenario = observer(() => {
                 <Layout className={layoutCls} direction="col" >
                 <div className="golive-head">
                             <div className="live-clsimg">
-                                <a href="">
+                                <a onClick={endClass} href="">
                                     <img src={arrowLeft} alt="" className="arrow-img" />
                                 </a>
                                 <p>{navigationTitle}</p>
@@ -194,9 +202,7 @@ export const MidClassScenario = observer(() => {
                         <div style={showWhiteboard?{display: 'none'}:{}} className="live-body-wrap">
                             <div className="live-teacher-wrap">
                             <div className="live-top-right">
-                            <a href="">
-                                <img src={handImg} alt="" className="live-hand-img" />
-                            </a>
+                            <HandsUpContainer/>
                             <a onClick={messageClicked} href="">
                                 <img src={messageWithDot} alt="" />
                             </a>
@@ -298,7 +304,8 @@ export const MidClassScenario = observer(() => {
                             </div>}
                         </div>
                         <div style={!showWhiteboard?{display: 'none'}:{}} className="live-body-wrap" >
-                            <div>
+                            <div className='whiteboard-div' >
+                            <img onClick={toggleWhiteboard} className='whiteboard-close' src={closeIcon}/>
                             <BigWidgetWindowContainer>
                                 {whiteboardWidgetActive && <WhiteboardContainer></WhiteboardContainer>}
                             </BigWidgetWindowContainer>
@@ -334,6 +341,8 @@ export const MidClassScenario = observer(() => {
                 </div>
             </Modal>
             ):null}
+            <CollectorContainer/>
+            <DialogContainer/>
         </Room>
     );
 });

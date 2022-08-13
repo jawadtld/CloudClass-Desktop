@@ -2342,6 +2342,7 @@ input:checked[type="checkbox"]::before {
 	background-color: rgba(81, 81, 81, 1);
 	border-top: 10px solid rgba(239, 149, 13, 1);
 	border-bottom: 15px solid rgba(239, 149, 13, 1);
+	height: 100%;
 }
 
 .golive-head {
@@ -5781,6 +5782,20 @@ footer {
 }
 .modal{
 	padding-bottom: 0;
+}
+.whiteboard-div{
+	width: 65%;
+    margin: 0 auto;
+    height: calc(100vh - 180px);
+	position: relative;
+}
+.whiteboard-close{
+	width: 24px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 1;
+	cursor: pointer;
 }
 
 /*........................................................... responsive styleee................................................ */

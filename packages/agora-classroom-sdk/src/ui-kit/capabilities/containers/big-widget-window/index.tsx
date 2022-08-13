@@ -24,7 +24,7 @@ export const BigWidgetWindowContainer: FC<Props> = observer((props) => {
   return (
     <div
       className="w-full relative flex-shrink-0 middle-container"
-      style={{ height: bigWidgetWindowHeight, position: 'relative' }}
+      style={{ height: '100%', position: 'relative' }}
       ref={measureRef}>
       {props.children}
       <ScreenShareContainer />
