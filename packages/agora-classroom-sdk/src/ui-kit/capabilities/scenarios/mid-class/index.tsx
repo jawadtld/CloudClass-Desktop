@@ -84,9 +84,9 @@ export const UserSection = observer(() => {
                     </div>
                 </div>
             })}
-            <div className="live-stud-card8">
-                <p className="more-count-p">+7</p>
-            </div>
+            {carouselStreams.length>9?(<div className="live-stud-card8">
+                <p className="more-count-p">{carouselStreams.length-9}+</p>
+            </div>):null}
         </div>
     </div>
 });
