@@ -3057,7 +3057,7 @@ input:checked[type="checkbox"]::before {
 	background: linear-gradient(360deg, rgba(196, 196, 196, 1), rgba(196, 196, 196, 0));
 }
 
-.share-modal-header p {
+.modal-title-text p {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 24px;
@@ -5775,6 +5775,12 @@ footer {
 	padding-left: 0;
 	padding-right: 0;
 	justify-content: flex-end;
+}
+.modal-content{
+	padding: 0;
+}
+.modal{
+	padding-bottom: 0;
 }
 
 /*........................................................... responsive styleee................................................ */

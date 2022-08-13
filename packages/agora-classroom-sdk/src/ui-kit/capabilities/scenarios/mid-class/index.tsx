@@ -19,6 +19,8 @@ import { BigWidgetWindowContainer } from '../../containers/big-widget-window';
 import { useInteractiveUIStores, useStore } from '@/infra/hooks/use-edu-stores';
 import { ScenesController } from '../../containers/scenes-controller';
 import './index.css';
+
+
 import micoff from './assets/image/Frame 989 (1).png';
 import speakerOff from './assets/image/speaker-off.png';
 import videoOff from './assets/image/video-off.png';
@@ -29,14 +31,22 @@ import messageWithDot from './assets/image/Group 985405.png';
 import handImg from './assets/image/Group (5).png';
 import arrowLeft from './assets/image/arrow-wht.png';
 import micOn from './assets/image/Frame 989.png';
+import whiteBoard from './assets/image/Group 985357.png';
+import screenShare from './assets/image/Vector (4).png';
+import shareImage from './assets/image/chat-more-optin.png';
+import sharePdf from './assets/image/Group 985404.png';
+
+
 import { StreamWindowUIStore } from '@/infra/stores/common/stream-window';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Room1v1StreamsContainer } from '../../containers/stream/room-1v1-player';
 import { RoomBigStudentStreamsContainer } from '../../containers/stream/room-big-player';
 import { StreamUIStore } from '@/infra/stores/common/stream';
 import { EduInteractiveUIClassStore } from '@/infra/stores/interactive';
 import { EduStreamUI } from '@/infra/stores/common/stream/struct';
 import { StreamPlayer } from '../../containers/stream';
+import { Modal } from '~ui-kit';
+import { ClassState, LeaveReason } from 'agora-edu-core';
 
 export const UserSection = observer(() => {
 
@@ -97,6 +107,7 @@ export const MidClassScenario = observer(() => {
     const {
         classroomStore,
         streamWindowUIStore: { containedStreamWindowCoverOpacity },
+        toolbarUIStore
     } = useStore();
     const {
         streamUIStore,
@@ -105,7 +116,7 @@ export const MidClassScenario = observer(() => {
     const {
         carouselStreams,
     } = streamUIStore;
-    const { boardStore, mediaStore } = classroomStore;
+    const { boardStore, mediaStore, roomStore } = classroomStore;
     const { whiteboardWidgetActive } = boardStore;
     const { navigationBarUIStore } = useStore();
     const { navigationTitle, currScreenShareTitle, actions, isBeforeClass, startClass, localMicOff } = navigationBarUIStore;
@@ -147,6 +158,25 @@ export const MidClassScenario = observer(() => {
         mediaStore.enableLocalVideo(videoStatus);
     }
 
+    const [showShare,setShowShare] = React.useState(false);
+    const toggleShareModal = (e: any) => {
+        e.preventDefault();
+        setShowShare(!showShare);
+    }
+
+    const [showWhiteboard,setShowWhiteboard] = React.useState(false);
+    const toggleWhiteboard = (e: any) => {
+        e.preventDefault();
+        setShowWhiteboard(!showWhiteboard);
+        if (showWhiteboard) {
+            setShowShare(false);
+        }
+    }
+
+    const endClass = () => {
+        classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+    }
+
     return (
         <Room>
             <SceneSwitch>
@@ -158,13 +188,12 @@ export const MidClassScenario = observer(() => {
                                 </a>
                                 <p>{navigationTitle}</p>
                             </div>
-
-                            <div onClick={startClass} className="end-btn-wrap">
-                                <button className="live-end-btn" data-bs-toggle="modal" data-bs-target="#endclsModal">End class</button>
-                            </div>
+                            {!isBeforeClass&&<div onClick={endClass} className="end-btn-wrap">
+                                <button className="live-end-btn" >End class</button>
+                            </div>}
                         </div>
 
-                        <div className="live-body-wrap">
+                        <div style={showWhiteboard?{display: 'none'}:{}} className="live-body-wrap">
                             <div className="live-teacher-wrap">
                             <div className="live-top-right">
                             <a href="">
@@ -199,7 +228,7 @@ export const MidClassScenario = observer(() => {
                                             <p> Off Video
                                             </p>
                                         </div>
-                                        <div className="share-btn">
+                                        <div onClick={toggleShareModal} className="share-btn">
                                             <div className="live-share-img rounded-circle">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#shareModal">
                                                     <img src={shareImg} alt="" className="live-img-share" />
@@ -270,8 +299,43 @@ export const MidClassScenario = observer(() => {
                                 </div>
                             </div>}
                         </div>
+                        <div style={!showWhiteboard?{display: 'none'}:{}} className="live-body-wrap" >
+                            <div>
+                            <BigWidgetWindowContainer>
+                                {whiteboardWidgetActive && <WhiteboardContainer></WhiteboardContainer>}
+                            </BigWidgetWindowContainer>
+                            </div>
+                        </div>
                 </Layout>
             </SceneSwitch>
+            {showShare?(
+                <Modal
+                title={<p>Share</p>}
+                style={{ width: 518 }}
+                closable={true}
+                onCancel={toggleShareModal}>
+                <div className="share-modal-content">
+                    <div className="share-modal-body">
+                        <div onClick={toggleWhiteboard} className="share-modl-item1">
+                            <img src={whiteBoard} alt="" />
+                            <p>Whiteboard</p>
+                        </div>
+                        <div className="share-modl-item1">
+                            <img src={screenShare} alt="" />
+                            <p>Screen share </p>
+                        </div>
+                        <div className="share-modl-item1">
+                            <img src={shareImage} alt="" />
+                            <p>Share Image</p>
+                        </div>
+                        <div className="share-modl-item1">
+                            <img src={sharePdf} alt="" />
+                            <p>Share PDF</p>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            ):null}
         </Room>
     );
 });
