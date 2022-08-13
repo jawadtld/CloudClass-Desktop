@@ -168,9 +168,7 @@ export const MidClassScenario = observer(() => {
     const toggleWhiteboard = (e: any) => {
         e.preventDefault();
         setShowWhiteboard(!showWhiteboard);
-        if (showWhiteboard) {
-            setShowShare(false);
-        }
+        setShowShare(false);
     }
 
     const endClass = () => {
