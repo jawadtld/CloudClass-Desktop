@@ -63,7 +63,7 @@ export class WidgetChatUIStore {
   constructor(coreStore: EduClassroomUIStore, private _classroomConfig: EduClassroomConfig) {
     runInAction(() => {
       this.coreStore = coreStore;
-      this.minimize = _classroomConfig.sessionInfo.roomType === EduRoomTypeEnum.RoomSmallClass;
+      this.minimize = false;
     });
 
     this._disposers.push(
