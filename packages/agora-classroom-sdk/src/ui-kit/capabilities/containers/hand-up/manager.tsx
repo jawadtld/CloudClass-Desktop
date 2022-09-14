@@ -57,16 +57,17 @@ export const WaveArmManager: FC<WaveArmManagerProps> = ({
         overlayClassName="customize-dialog-popover"
         trigger="hover"
         content={content}
-        placement="leftBottom">
+        placement="leftTop">
         <Card
           width={width}
           height={height}
           borderRadius={borderRadius}
           className={twinkleFlag ? 'card-hands-up-active' : ''}>
           <div className="hands-box-line">
-            <a>
-              <img src={handImg} alt="" className="live-hand-img" />
-            </a>
+            <SvgImg
+              type={twinkleFlag ? 'teacher-hands-up-active' : 'teacher-hands-up-before'}
+              size={24}
+            />
           </div>
           {waveArmCount ? (
             <span className="hands-up-count">{waveArmCount > 99 ? '99+' : waveArmCount}</span>
@@ -138,6 +139,8 @@ export const StudentsWaveArmList: FC<StudentsWaveArmListProps> = ({
     }
     setShowWaveArmList(showWaveArmListTemp);
   }, [pageIndex, pagesList]);
+
+  console.log(showWaveArmList);
 
   return showWaveArmList.length ? (
     <div className={cls} {...restProps}>
