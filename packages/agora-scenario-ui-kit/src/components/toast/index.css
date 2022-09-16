@@ -30,15 +30,15 @@
 }
 
 .toast-success {
-  @apply bg-success border-success border;
+  /* @apply bg-success border-success border; */
 }
 
 .toast-error {
-  @apply bg-error border-error border;
+  /* @apply bg-error border-error border; */
 }
 
 .toast-warning {
-  @apply bg-warning border-warning border;
+  /* @apply bg-warning border-warning border; */
 }
 
 .toast .toast-progress {

@@ -65,7 +65,7 @@ export const Modal: ModalType = ({
     });
   }
   const cls = classnames({
-    [`modal`]: 1,
+    [`modalcustom`]: 1,
     [`back-modal`]: modalType === 'back',
     [`${className}`]: !!className,
     // TODO: workaround solution, need redesign, control modal level
