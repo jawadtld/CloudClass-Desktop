@@ -5772,6 +5772,10 @@ footer {
 .live-body-wrap .live-teacher-wrap  {
 	width: 70%;
 }
+.live-body-wrap .live-teacher-wrap-not-started  {
+	width: 90%;
+	margin: 0 auto;
+}
 .live-body-wrap .live-teacher-wrap  .live-top-right {
 	padding-left: 0;
 	padding-right: 0;

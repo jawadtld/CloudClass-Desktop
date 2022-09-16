@@ -46,7 +46,7 @@ import { EduInteractiveUIClassStore } from '@/infra/stores/interactive';
 import { EduStreamUI } from '@/infra/stores/common/stream/struct';
 import { StreamPlayer } from '../../containers/stream';
 import { Modal } from '~ui-kit';
-import { ClassState, LeaveReason } from 'agora-edu-core';
+import { ClassState, EduRoleTypeEnum, LeaveReason } from 'agora-edu-core';
 
 export const UserSection = observer(() => {
 
@@ -166,6 +166,12 @@ export const MidClassScenario = observer(() => {
         setShowShare(!showShare);
     }
 
+    const [showMore,setShowMore] = React.useState(false);
+    const toggleMoreModal = (e: any) => {
+        e.preventDefault();
+        setShowMore(!showMore);
+    }
+
     const [showWhiteboard,setShowWhiteboard] = React.useState(false);
     const toggleWhiteboard = (e: any) => {
         e.preventDefault();
@@ -200,25 +206,25 @@ export const MidClassScenario = observer(() => {
                         </div>
 
                         <div style={showWhiteboard?{display: 'none'}:{}} className="live-body-wrap">
-                            <div className="live-teacher-wrap">
-                            <div className="live-top-right">
-                            <HandsUpContainer/>
-                            <a onClick={messageClicked} href="">
-                                <img src={messageWithDot} alt="" />
-                            </a>
-                        </div>
+                            <div className={isBeforeClass?'live-teacher-wrap-not-started':'live-teacher-wrap'}>
+                            {!isBeforeClass&&<div className="live-top-right">
+                                {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&<HandsUpContainer />}
+                                <a onClick={messageClicked} href="">
+                                    <img src={messageWithDot} alt="" />
+                                </a>
+                            </div>}
                                 <div className="live-teach-imgwrap">
                                     <TeacherStream></TeacherStream>
                                 </div>
 
-                                {!isBeforeClass && <div className="live-studimg-wrap">
+                                <div className="live-studimg-wrap">
                                     <div className="sub-btn-wrap">
-                                        <div onClick={toggleMuteAll} className="share-btn">
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&<div onClick={toggleMuteAll} className="share-btn">
                                             <a href="">
                                                 <img src={speakerOff} alt="" />
                                             </a>
                                             <p className="share-p text-center">Mute all <br/>students</p>
-                                        </div>
+                                        </div>}
                                         <div onClick={toggleMuteSelf} className="share-btn">
                                             <a href="">
                                                 <img src={micStatus?micoff:micOn} alt="" />
@@ -232,59 +238,45 @@ export const MidClassScenario = observer(() => {
                                             <p> Off Video
                                             </p>
                                         </div>
-                                        <div onClick={toggleShareModal} className="share-btn">
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleShareModal} className="share-btn">
                                             <div className="live-share-img rounded-circle">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#shareModal">
                                                     <img src={shareImg} alt="" className="live-img-share" />
                                                 </a>
                                             </div>
                                             <p className="share-p">Share</p>
-                                        </div>
-                                        <div className="share-btn">
+                                        </div>}
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&<HandsUpContainer />}
+                                        {/* Student more */}
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&!isBeforeClass&&<div onClick={toggleMoreModal} className="share-btn">
                                             <div className="live-share-img rounded-circle">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" className="live-img-share" />
                                                 </a>
                                             </div>
                                             <p className="share-p">More</p>
-                                        </div>
-                                    </div>
-
-                                </div>}
-
-                                {isBeforeClass && <div className="golive-btn-wrap">
-                                    <div className="sub-btn-wrap">
-                                        <div className="share-btn">
-                                            <a href="">
-                                                <img src={speakerOff} alt="" className="mute-img" />
-                                            </a>
-                                            <p>Mute all students</p>
-                                        </div>
-                                        <div className="share-btn">
-                                            <a href="">
-                                                <img src={micoff} alt="" />
-                                            </a>
-                                            <p> Off Mic </p>
-                                        </div>
-                                        <div className="share-btn">
-                                            <a href="">
-                                                <img src={videoOff} alt="" />
-                                            </a>
-                                            <p> Off Video
-                                            </p>
-                                        </div>
-                                        <div className="share-btn">
+                                        </div>}
+                                        {/* Teacher more */}
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModal} className="share-btn">
+                                            <div className="live-share-img rounded-circle">
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
+                                                    <img src={moreIcon} alt="" className="live-img-share" />
+                                                </a>
+                                            </div>
+                                            <p className="share-p">More</p>
+                                        </div>}
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&isBeforeClass&&<div onClick={startClass} className="share-btn">
                                             <a href="">
                                                 <img src={recordIcon} alt="" className="recd-img" />
                                             </a>
                                             <p> Turn on recording </p>
-                                        </div>
+                                        </div>}
                                     </div>
-                                    <div className="right-btn-wrap">
+                                    {isBeforeClass&&<div className="right-btn-wrap">
                                         <button onClick={startClass} type="button" className="live-btn">
                                             <img src="../image\bi_camera-video.png" alt="" /> Go Live</button>
-                                    </div>
-                                </div>}
+                                    </div>}
+                                </div>
                             </div>
                             {!isBeforeClass && !showMessages && <UserSection></UserSection>}
                             {!isBeforeClass && showMessages && <div className="chatrm-right-wrap">
