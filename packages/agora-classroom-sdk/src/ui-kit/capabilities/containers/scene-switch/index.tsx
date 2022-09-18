@@ -12,7 +12,7 @@ export const SceneSwitch: FC<Props> = observer(({ children }) => {
   const { groupUIStore } = useStore();
 
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full bg-white">
       {/* Loading */}
       {groupUIStore.joiningSubRoom ? <PageLoading /> : children}
     </div>

@@ -2353,8 +2353,9 @@ input:checked[type="checkbox"]::before {
 	justify-content: space-between;
 	padding-top: 65px;
 	padding-left: 50px;
-	padding-right: 50px;
-	margin-bottom: 14px;
+	padding-right: 0;
+	margin-bottom: 0;
+	margin-right: 50px;
 }
 
 .live-name-wrap {
@@ -2663,7 +2664,7 @@ input:checked[type="checkbox"]::before {
 .live-clsimg {
 	display: flex;
 	align-items: center;
-	padding-bottom: 30px;
+	padding-bottom: 27px;
 }
 
 .arrow-img {
@@ -2710,7 +2711,8 @@ input:checked[type="checkbox"]::before {
 
 /* ------------------live video----------- */
 .video-player {
-	height: calc(100vh - 400px);
+	/* height: calc(100vh - 400px); */
+	height: calc(100vh - 235px);
 	width: 100%;
 }
 
@@ -5765,7 +5767,8 @@ footer {
 }
 
 .live-teach-imgwrap{
-	height: calc(100vh - 400px);
+	/* height: calc(100vh - 400px); */
+	height: calc(100vh - 270px);
 }
 
 /* additional styles */
@@ -5786,6 +5789,21 @@ footer {
 }
 .modalcustom{
 	padding-bottom: 0;
+}
+.modalcustom .modal-footer {
+	/* display: none; */
+}
+.modalcustom .modal-title {
+	height: 60px;
+    color: #666666;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    background: linear-gradient(1deg, #C4C4C4 0%, rgba(196, 196, 196, 0) 41.91%);
+    border-radius: 10px 10px 0px 0px;
+}
+.modalcustom .share-modal-content {
+	border: transparent;
 }
 .whiteboard-div{
 	width: 65%;

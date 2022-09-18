@@ -23,7 +23,9 @@ import './index.css';
 
 import micoff from './assets/image/Frame 989 (1).png';
 import speakerOff from './assets/image/speaker-off.png';
+import speakerOn from './assets/image/speaker-on.svg';
 import videoOff from './assets/image/video-off.png';
+import videoOn from './assets/image/video-on.svg';
 import shareImg from './assets/image/share-img.png';
 import moreIcon from './assets/image/Group 985340.png';
 import recordIcon from './assets/image/Frame 994.png';
@@ -148,16 +150,16 @@ export const MidClassScenario = observer(() => {
     const [micStatus, setMicStatus] = React.useState(true);
     const toggleMuteSelf = (e: any) => {
         e.preventDefault();
+        mediaStore.enableLocalAudio(!micStatus);
         setMicStatus(!micStatus);
-        mediaStore.enableLocalAudio(micStatus);
     }
 
     // For mute self button
     const [videoStatus, setVideoStatus] = React.useState(true);
     const toggleSelfVideo = (e: any) => {
         e.preventDefault();
+        mediaStore.enableLocalVideo(!videoStatus);
         setVideoStatus(!videoStatus);
-        mediaStore.enableLocalVideo(videoStatus);
     }
 
     const [showShare,setShowShare] = React.useState(false);
@@ -166,10 +168,16 @@ export const MidClassScenario = observer(() => {
         setShowShare(!showShare);
     }
 
-    const [showMore,setShowMore] = React.useState(false);
-    const toggleMoreModal = (e: any) => {
+    const [showMoreStudent,setShowMoreStudent] = React.useState(false);
+    const toggleMoreModalStudent = (e: any) => {
         e.preventDefault();
-        setShowMore(!showMore);
+        setShowMoreStudent(!showMoreStudent);
+    }
+
+    const [showMoreTeacher,setShowMoreTeacher] = React.useState(false);
+    const toggleMoreModalTeacher = (e: any) => {
+        e.preventDefault();
+        setShowMoreTeacher(!showMoreTeacher);
     }
 
     const [showWhiteboard,setShowWhiteboard] = React.useState(false);
@@ -177,6 +185,8 @@ export const MidClassScenario = observer(() => {
         e.preventDefault();
         setShowWhiteboard(!showWhiteboard);
         setShowShare(false);
+        setShowMoreStudent(false);
+        setShowMoreTeacher(false);
     }
 
     const endClass = (e: any) => {
@@ -221,7 +231,7 @@ export const MidClassScenario = observer(() => {
                                     <div className="sub-btn-wrap">
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&<div onClick={toggleMuteAll} className="share-btn">
                                             <a href="">
-                                                <img src={speakerOff} alt="" />
+                                                <img src={speakerStatus?speakerOff:speakerOn} alt="" />
                                             </a>
                                             <p className="share-p text-center">Mute all <br/>students</p>
                                         </div>}
@@ -233,9 +243,9 @@ export const MidClassScenario = observer(() => {
                                         </div>
                                         <div onClick={toggleSelfVideo} className="share-btn">
                                             <a href="">
-                                                <img src={videoOff} alt="" />
+                                                <img src={videoStatus?videoOff:videoOn} alt="" />
                                             </a>
-                                            <p> Off Video
+                                            <p> {videoStatus?'Off Video':'On Video'}
                                             </p>
                                         </div>
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleShareModal} className="share-btn">
@@ -248,7 +258,7 @@ export const MidClassScenario = observer(() => {
                                         </div>}
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&<HandsUpContainer />}
                                         {/* Student more */}
-                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&!isBeforeClass&&<div onClick={toggleMoreModal} className="share-btn">
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&!isBeforeClass&&<div onClick={toggleMoreModalStudent} className="share-btn">
                                             <div className="live-share-img rounded-circle">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" className="live-img-share" />
@@ -257,7 +267,7 @@ export const MidClassScenario = observer(() => {
                                             <p className="share-p">More</p>
                                         </div>}
                                         {/* Teacher more */}
-                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModal} className="share-btn">
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModalTeacher} className="share-btn">
                                             <div className="live-share-img rounded-circle">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" className="live-img-share" />
@@ -329,6 +339,34 @@ export const MidClassScenario = observer(() => {
                             <img src={sharePdf} alt="" />
                             <p>Share PDF</p>
                         </div>
+                    </div>
+                </div>
+            </Modal>
+            ):null}
+            {showMoreStudent?(
+                <Modal
+                title={<p>More</p>}
+                style={{ width: 518 }}
+                closable={true}
+                onCancel={toggleMoreModalStudent}>
+                <div className="share-modal-content">
+                    <div className="share-modal-body">
+                        <div onClick={toggleWhiteboard} className="share-modl-item1">
+                            <img src={whiteBoard} alt="" />
+                            <p>Whiteboard</p>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+            ):null}
+            {showMoreTeacher?(
+                <Modal
+                title={<p>More</p>}
+                style={{ width: 518 }}
+                closable={true}
+                onCancel={toggleMoreModalTeacher}>
+                <div className="share-modal-content">
+                    <div className="share-modal-body">
                     </div>
                 </div>
             </Modal>
