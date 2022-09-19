@@ -215,7 +215,7 @@ export const MidClassScenario = observer(() => {
                             </div>}
                         </div>
 
-                        <div style={showWhiteboard?{display: 'none'}:{}} className="live-body-wrap">
+                        <div className="live-body-wrap">
                             <div className={isBeforeClass?'live-teacher-wrap-not-started':'live-teacher-wrap'}>
                             {!isBeforeClass&&<div className="live-top-right">
                                 {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&<HandsUpContainer />}
@@ -224,7 +224,13 @@ export const MidClassScenario = observer(() => {
                                 </a>
                             </div>}
                                 <div className="live-teach-imgwrap">
-                                    <TeacherStream></TeacherStream>
+                                    {!showWhiteboard&&<TeacherStream></TeacherStream>}
+                                    {showWhiteboard && <div className='whiteboard-div' >
+                                        <img onClick={toggleWhiteboard} className='whiteboard-close' src={closeIcon} />
+                                        <BigWidgetWindowContainer>
+                                            {whiteboardWidgetActive && <WhiteboardContainer></WhiteboardContainer>}
+                                        </BigWidgetWindowContainer>
+                                    </div>}
                                 </div>
 
                                 <div className="live-studimg-wrap">
@@ -304,14 +310,6 @@ export const MidClassScenario = observer(() => {
                                 </div>
                                 </div>
                             </div>}
-                        </div>
-                        <div style={!showWhiteboard?{display: 'none'}:{}} className="live-body-wrap" >
-                            <div className='whiteboard-div' >
-                            <img onClick={toggleWhiteboard} className='whiteboard-close' src={closeIcon}/>
-                            <BigWidgetWindowContainer>
-                                {whiteboardWidgetActive && <WhiteboardContainer></WhiteboardContainer>}
-                            </BigWidgetWindowContainer>
-                            </div>
                         </div>
                 </Layout>
             </SceneSwitch>
