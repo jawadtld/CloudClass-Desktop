@@ -180,6 +180,12 @@ export const MidClassScenario = observer(() => {
         setShowMoreTeacher(!showMoreTeacher);
     }
 
+    const [showExitConfirm,setShowExitConfirm] = React.useState(false);
+    const toggleExitConfirm = (e: any) => {
+        e.preventDefault();
+        setShowExitConfirm(!showExitConfirm);
+    }
+
     const [showWhiteboard,setShowWhiteboard] = React.useState(false);
     const toggleWhiteboard = (e: any) => {
         e.preventDefault();
@@ -205,12 +211,12 @@ export const MidClassScenario = observer(() => {
                 <Layout className={layoutCls} direction="col" >
                 <div className="golive-head">
                             <div className="live-clsimg">
-                                <a onClick={endClass} href="">
+                                <a onClick={toggleExitConfirm} href="">
                                     <img src={arrowLeft} alt="" className="arrow-img" />
                                 </a>
                                 <p>{navigationTitle}</p>
                             </div>
-                            {!isBeforeClass&&<div onClick={endClass} className="end-btn-wrap">
+                            {!isBeforeClass&&<div onClick={toggleExitConfirm} className="end-btn-wrap">
                                 <button className="live-end-btn" >End class</button>
                             </div>}
                         </div>
@@ -369,6 +375,21 @@ export const MidClassScenario = observer(() => {
                 </div>
             </Modal>
             ):null}
+            {showExitConfirm&&<Modal
+                title={<p>Leave class</p>}
+                style={{ width: 518 }}
+                closable={true}
+                onCancel={toggleExitConfirm}>
+                <div className="exit-modal-content">
+                    <div className="exit-modal-body">
+                        <p>Do you want to leave the class now</p>
+                        <div className="exit-modal-footer" >
+                            <button className="exit-modal-btn" onClick={toggleExitConfirm} >No</button>
+                            <button className="exit-modal-btn" onClick={endClass} >Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </Modal>}
             <CollectorContainer/>
             <DialogContainer/>
         </Room>
