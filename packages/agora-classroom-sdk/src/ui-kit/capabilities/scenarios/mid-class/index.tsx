@@ -27,7 +27,7 @@ import speakerOn from './assets/image/speaker-on.svg';
 import videoOff from './assets/image/video-off.png';
 import videoOn from './assets/image/video-on.svg';
 import shareImg from './assets/image/share-img.png';
-import moreIcon from './assets/image/Group 985340.png';
+import moreIcon from './assets/image/more.svg';
 import recordIcon from './assets/image/Frame 994.png';
 import messageWithDot from './assets/image/Group 985405.png';
 import arrowLeft from './assets/image/arrow-wht.png';
@@ -37,6 +37,7 @@ import screenShare from './assets/image/Vector (4).png';
 import shareImage from './assets/image/chat-more-optin.png';
 import sharePdf from './assets/image/Group 985404.png';
 import closeIcon from './assets/image/Group 985403.png';
+import handRaiseIcon from './assets/image/hand-raise.svg';
 
 
 import { StreamWindowUIStore } from '@/infra/stores/common/stream-window';
@@ -207,7 +208,7 @@ export const MidClassScenario = observer(() => {
 
     return (
         <Room>
-            <SceneSwitch>
+            {classroomStore.userStore.localUser&&<SceneSwitch>
                 <Layout className={layoutCls} direction="col" >
                 <div className="golive-head">
                             <div className="live-clsimg">
@@ -271,7 +272,7 @@ export const MidClassScenario = observer(() => {
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&<HandsUpContainer />}
                                         {/* Student more */}
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&!isBeforeClass&&<div onClick={toggleMoreModalStudent} className="share-btn">
-                                            <div className="live-share-img rounded-circle">
+                                            <div className="live-share-img">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" className="live-img-share" />
                                                 </a>
@@ -280,7 +281,7 @@ export const MidClassScenario = observer(() => {
                                         </div>}
                                         {/* Teacher more */}
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModalTeacher} className="share-btn">
-                                            <div className="live-share-img rounded-circle">
+                                            <div className="live-share-img">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" className="live-img-share" />
                                                 </a>
@@ -318,7 +319,7 @@ export const MidClassScenario = observer(() => {
                             </div>}
                         </div>
                 </Layout>
-            </SceneSwitch>
+            </SceneSwitch>}
             {showShare?(
                 <Modal
                 title={<p>Share</p>}

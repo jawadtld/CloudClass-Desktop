@@ -5825,6 +5825,9 @@ footer {
     z-index: 1;
 	cursor: pointer;
 }
+.exit-modal-footer{
+	justify-content: space-around;
+}
 
 /*........................................................... responsive styleee................................................ */
 

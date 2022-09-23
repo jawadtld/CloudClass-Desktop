@@ -8,6 +8,8 @@ import { useStore } from '@/infra/hooks/use-edu-stores';
 import { observer } from 'mobx-react';
 import { EduClassroomConfig } from 'agora-edu-core';
 
+import raiseHandIcon from './assets/image/hand-raise.svg';
+
 export enum WaveArmStateEnum {
   waveArmBefore = 'wave-arm-before',
   waveArming = 'wave-arm-ing',
@@ -172,12 +174,7 @@ export const WaveArmSender: FC<BaseWaveArmProps> = observer(() => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       className="share-btn">
-      <a className="rounded-circle" >
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M25.0038 17.7999V8.79995C25.0038 7.80636 24.0989 6.99996 22.9144 6.99996C22.1803 6.99996 20.7685 7.35996 20.7685 8.79995V5.19997M20.7685 5.19997C20.7685 4.20638 19.8635 3.39999 18.6791 3.39999C17.9633 3.39999 16.5332 3.75998 16.5332 5.19997M20.7685 5.19997V11.7999M16.5332 5.19997V2.79999C16.5332 1.80639 15.6282 1 14.4437 1C13.2578 1 12.2978 1.80639 12.2978 2.79999V5.19997M16.5332 5.19997V11.7999M12.2978 5.19997C12.2978 3.75998 10.8959 3.39999 10.1802 3.39999C8.99427 3.39999 8.0625 4.22918 8.0625 5.22397V15.3999M12.2978 5.19997V11.7999" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M25 17.7999C25 22.5999 20.5755 24.9999 15.1176 24.9999C9.65963 24.9999 7.78196 23.7999 3.54663 17.7999L1.32873 14.6739C0.572018 13.6323 1.17767 12.2811 2.57251 11.8971C3.0286 11.7705 3.51948 11.7661 3.9786 11.8846C4.43772 12.0031 4.84287 12.2387 5.13912 12.5595L8.05867 15.4395" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </a>
+        <img src={raiseHandIcon} />
       <p> Raise Hand
       </p>
     </div>
