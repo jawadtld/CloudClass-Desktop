@@ -280,14 +280,14 @@ export const MidClassScenario = observer(() => {
                                             <p className="share-p">More</p>
                                         </div>}
                                         {/* Teacher more */}
-                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModalTeacher} className="share-btn">
+                                        {/* {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModalTeacher} className="share-btn">
                                             <div className="live-share-img">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
                                                     <img src={moreIcon} alt="" />
                                                 </a>
                                             </div>
                                             <p className="share-p">More</p>
-                                        </div>}
+                                        </div>} */}
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&isBeforeClass&&<div onClick={startClass} className="share-btn">
                                             <a href="">
                                                 <img src={recordIcon} alt="" className="recd-img" />
@@ -332,7 +332,7 @@ export const MidClassScenario = observer(() => {
                             <img src={whiteBoard} alt="" />
                             <p>Whiteboard</p>
                         </div>
-                        <div className="share-modl-item1">
+                        {/* <div className="share-modl-item1">
                             <img src={screenShare} alt="" />
                             <p>Screen share </p>
                         </div>
@@ -343,7 +343,7 @@ export const MidClassScenario = observer(() => {
                         <div className="share-modl-item1">
                             <img src={sharePdf} alt="" />
                             <p>Share PDF</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </Modal>
