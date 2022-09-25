@@ -274,7 +274,7 @@ export const MidClassScenario = observer(() => {
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.student&&!isBeforeClass&&<div onClick={toggleMoreModalStudent} className="share-btn">
                                             <div className="live-share-img">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
-                                                    <img src={moreIcon} alt="" className="live-img-share" />
+                                                    <img src={moreIcon} alt="" />
                                                 </a>
                                             </div>
                                             <p className="share-p">More</p>
@@ -283,7 +283,7 @@ export const MidClassScenario = observer(() => {
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&!isBeforeClass&&<div onClick={toggleMoreModalTeacher} className="share-btn">
                                             <div className="live-share-img">
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#moreModal">
-                                                    <img src={moreIcon} alt="" className="live-img-share" />
+                                                    <img src={moreIcon} alt="" />
                                                 </a>
                                             </div>
                                             <p className="share-p">More</p>
@@ -378,11 +378,11 @@ export const MidClassScenario = observer(() => {
             ):null}
             {showExitConfirm&&<Modal
                 title={<p>Leave class</p>}
-                style={{ width: 518 }}
+                style={{ width: 322 }}
                 closable={true}
                 onCancel={toggleExitConfirm}>
                 <div className="exit-modal-content">
-                    <div className="exit-modal-body">
+                    <div className="exit-modal-body end-class-modal">
                         <p>Do you want to leave the class now</p>
                         <div className="exit-modal-footer" >
                             <button className="exit-modal-btn" onClick={toggleExitConfirm} >No</button>

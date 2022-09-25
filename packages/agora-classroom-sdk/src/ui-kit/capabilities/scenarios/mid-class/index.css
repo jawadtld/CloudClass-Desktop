@@ -2633,6 +2633,7 @@ input:checked[type="checkbox"]::before {
 	color: #818181;
 	width: 100%;
 	padding: 15px;
+	border: transparent;
 }
 .livecls-input-search .form-control:focus {
 	box-shadow: none;
@@ -5795,6 +5796,7 @@ footer {
 }
 .modalcustom{
 	padding-bottom: 0;
+	border-radius: 15px;
 }
 .modalcustom .modal-footer {
 	/* display: none; */
@@ -5829,6 +5831,45 @@ footer {
 	justify-content: space-around;
 }
 
+.raise-hand {
+	padding-top: 8px;
+}
+
+.end-class-modal {
+	padding-left: 55px;
+    padding-right: 55px;
+}
+
+
+.end-class-modal p {
+	color: #666666;
+	text-align: center;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 26px;
+	padding-bottom: 34px;
+	padding-top: 32px;
+}
+
+.end-class-modal .exit-modal-btn {
+	background: linear-gradient(354.49deg, #FBFBFB 22.59%, #FFFFFF 95.6%);
+	border: 0.5px solid #D0D0D0;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 50px;
+	color: #000;
+	text-align: center;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 12px;
+	margin-bottom: 36px;
+	width:65px;
+	height: 38px;
+}
+
+.end-class-modal .exit-modal-footer {
+	justify-content: space-between;
+    display: flex;
+}
 /*........................................................... responsive styleee................................................ */
 
 @media screen and (max-width: 1490px) {

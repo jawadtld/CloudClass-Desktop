@@ -174,8 +174,8 @@ export const WaveArmSender: FC<BaseWaveArmProps> = observer(() => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       className="share-btn">
-        <img src={raiseHandIcon} />
-      <p> Raise Hand
+        <a><img src={raiseHandIcon} /></a>
+      <p className="raise-hand"> Raise Hand
       </p>
     </div>
   );
