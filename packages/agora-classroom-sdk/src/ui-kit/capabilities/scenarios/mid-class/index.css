@@ -5898,18 +5898,44 @@ footer {
 .ReactVirtualized__Grid {
 	width: 100%;
 }
+/* Scrollbar Styling */
+.ReactVirtualized__Grid::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+.ReactVirtualized__Grid::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.ReactVirtualized__Grid::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #6d6d6d; 
+}
 
 .room.chat-history {
 	height: calc(100% - 110px);
+	overflow: hidden;
 }
 
-.chat-message-content.blue {
+.chat-message-content.blue,
+.chat-message-content.ghost {
 	word-break: break-all;
 }
 
 .chat-message-content {
 	min-height: auto;
 	padding: 10px;
+}
+
+.chat-texting.focus {
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+.chat-texting > textarea {
+	width: 75%;
 }
 /*........................................................... responsive styleee................................................ */
 
