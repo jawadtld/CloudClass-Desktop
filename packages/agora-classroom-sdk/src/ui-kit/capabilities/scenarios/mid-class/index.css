@@ -986,7 +986,6 @@ input:checked[type="checkbox"]::before {
 .collapse-top p {
 	font-weight: 400;
 	font-size: 14px;
-	line-height: 12px;
 	color: #5D5D5D;
 	padding-top: 19px;
 	line-height: 16px;
@@ -1899,7 +1898,6 @@ input:checked[type="checkbox"]::before {
 }
 
 .noti-count {
-	font-size: 14px;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16px;
@@ -2755,6 +2753,9 @@ input:checked[type="checkbox"]::before {
 
 
 /* ............................................live-chat....................................................... */
+.chat-room-wrap {
+	height: calc(100vh - 258px);
+}
 
 .chat-room-wrap .heading {
 	padding-bottom: 12px;
@@ -2779,8 +2780,9 @@ input:checked[type="checkbox"]::before {
 	background: rgba(104, 104, 104, 255);
 	margin-left: 35px;
 	padding: 10px 15px 15px 15px;
-	margin-bottom: 85px;
-	margin-top: 5px; 
+	/* margin-bottom: 85px; */
+	margin-top: 75px; 
+	border-radius: 5px;
 }
 
 .grp-img-txt .rounded-circle {
@@ -5891,8 +5893,9 @@ footer {
 }
 
 .rtm-chat-4 .small-class-chat-fixed {
-	min-height: 465px;
-	height: 100%;
+	/* min-height: 465px;
+	height: 100%; */
+	height: calc(100vh - 315px);
 }
 
 .ReactVirtualized__Grid {
