@@ -169,6 +169,7 @@ body,
   flex: 1 1;
   z-index: 9;
   border: 0;
+  display: none;
 }
 
 .placeholder-desc {
