@@ -383,7 +383,7 @@ export const MidClassScenario = observer(() => {
                 onCancel={toggleExitConfirm}>
                 <div className="exit-modal-content">
                     <div className="exit-modal-body end-class-modal">
-                        <p>Do you want to leave the class now</p>
+                        <p>Do you want to leave the class now?</p>
                         <div className="exit-modal-footer" >
                             <button className="exit-modal-btn" onClick={toggleExitConfirm} >No</button>
                             <button className="exit-modal-btn" onClick={endClass} >Yes</button>
