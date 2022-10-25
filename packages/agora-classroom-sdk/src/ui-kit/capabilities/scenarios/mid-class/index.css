@@ -5939,6 +5939,14 @@ footer {
 .chat-texting > textarea {
 	width: 75%;
 }
+.svg-img {
+	stroke: #000;
+}
+.popover.video-player-tools-popover.popover-placement-bottom {
+	left: auto!important;
+	right: 115px;
+	top: 570px!important;
+}
 /*........................................................... responsive styleee................................................ */
 
 @media (min-width:769px) and (max-width:1024px) {
