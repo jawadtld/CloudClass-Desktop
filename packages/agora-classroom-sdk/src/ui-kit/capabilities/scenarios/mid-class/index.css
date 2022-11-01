@@ -5947,6 +5947,18 @@ footer {
 	right: 115px;
 	top: 570px!important;
 }
+.carousel-desc {
+	top: -4px!important;
+}
+.fcr-pure-material-checkbox > span::after {
+	top: 6px!important;
+}
+.fcr-pure-material-checkbox > span::before {
+	margin: -2px 1px 3px 1px!important;
+}
+.popover.video-player-tools-popover.popover-placement-bottom {
+	display: none;
+} 
 /*........................................................... responsive styleee................................................ */
 
 @media (min-width:769px) and (max-width:1024px) {
