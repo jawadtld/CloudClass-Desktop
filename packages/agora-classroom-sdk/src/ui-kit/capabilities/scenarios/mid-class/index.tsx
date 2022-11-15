@@ -41,7 +41,7 @@ import handRaiseIcon from './assets/image/hand-raise.svg';
 
 
 import { StreamWindowUIStore } from '@/infra/stores/common/stream-window';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Room1v1StreamsContainer } from '../../containers/stream/room-1v1-player';
 import { RoomBigStudentStreamsContainer } from '../../containers/stream/room-big-player';
 import { StreamUIStore } from '@/infra/stores/common/stream';
@@ -49,7 +49,7 @@ import { EduInteractiveUIClassStore } from '@/infra/stores/interactive';
 import { EduStreamUI } from '@/infra/stores/common/stream/struct';
 import { StreamPlayer } from '../../containers/stream';
 import { Modal } from '~ui-kit';
-import { ClassState, EduRoleTypeEnum, LeaveReason } from 'agora-edu-core';
+import { ClassState, EduRoleTypeEnum, LeaveReason, RecordMode } from 'agora-edu-core';
 
 export const UserSection = observer(() => {
 
@@ -120,7 +120,7 @@ export const MidClassScenario = observer(() => {
     const {
         carouselStreams,
     } = streamUIStore;
-    const { boardStore, mediaStore, roomStore } = classroomStore;
+    const { boardStore, mediaStore, roomStore, recordingStore } = classroomStore;
     const { whiteboardWidgetActive } = boardStore;
     const { navigationBarUIStore } = useStore();
     const { navigationTitle, currScreenShareTitle, actions, isBeforeClass, startClass, localMicOff } = navigationBarUIStore;
@@ -198,13 +198,51 @@ export const MidClassScenario = observer(() => {
 
     const endClass = (e: any) => {
         e.preventDefault();
-        classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+        if (classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher) {
+            recordingStore.stopRecording().then(success => {
+                classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+            }, error => {
+                classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+            });
+        } else {
+            classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
+        }
+        
     }
 
     const handWave = (e: any) => {
         e.preventDefault();
         waveArm(teacherUuid,3);
     }
+
+    const startRecord = (e: any) => {
+        e.preventDefault();
+        recordingStore.startRecording({
+            mode: RecordMode.Web,
+            webRecordConfig: {
+                rootUrl: window.location.origin + '/scando/liveclass/record',
+                videoWidth: 1920,
+                videoHeight: 1080,
+                videoBitrate: 2000
+            },
+            retryTimeout: 60
+        });
+    }
+
+    useEffect(() => {
+        if (classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher) {
+            recordingStore.startRecording({
+                mode: RecordMode.Web,
+                webRecordConfig: {
+                    rootUrl: window.location.origin + '/scando/liveclass/record',
+                    videoWidth: 1920,
+                    videoHeight: 1080,
+                    videoBitrate: 2000
+                },
+                retryTimeout: 60
+            });
+        }
+    });
 
     return (
         <Room>
@@ -288,7 +326,7 @@ export const MidClassScenario = observer(() => {
                                             </div>
                                             <p className="share-p">More</p>
                                         </div>} */}
-                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&isBeforeClass&&<div onClick={startClass} className="share-btn">
+                                        {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&isBeforeClass&&<div onClick={startRecord} className="share-btn">
                                             <a href="">
                                                 <img src={recordIcon} alt="" className="recd-img" />
                                             </a>
