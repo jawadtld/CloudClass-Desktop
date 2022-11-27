@@ -198,6 +198,8 @@ export const MidClassScenario = observer(() => {
 
     const endClass = (e: any) => {
         e.preventDefault();
+        mediaStore.enableLocalAudio(false);
+        mediaStore.enableLocalVideo(false);
         if (classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher) {
             recordingStore.stopRecording().then(success => {
                 classroomStore.connectionStore.leaveClassroom(LeaveReason.leave);
@@ -231,18 +233,36 @@ export const MidClassScenario = observer(() => {
 
     useEffect(() => {
         if (classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher) {
-            recordingStore.startRecording({
-                mode: RecordMode.Web,
-                webRecordConfig: {
-                    rootUrl: window.location.origin + '/scando/liveclass/record',
-                    videoWidth: 1920,
-                    videoHeight: 1080,
-                    videoBitrate: 2000
-                },
-                retryTimeout: 60
-            });
+            // Start recording
+            const agoraRecordStatus = sessionStorage.getItem('agora_record_status');
+            if (agoraRecordStatus && JSON.parse(agoraRecordStatus)) {
+                recordingStore.startRecording({
+                    mode: RecordMode.Web,
+                    webRecordConfig: {
+                        rootUrl: window.location.origin + '/scando/liveclass/record',
+                        videoWidth: 1920,
+                        videoHeight: 1080,
+                        videoBitrate: 2000
+                    },
+                    retryTimeout: 60
+                });
+            }
+
+            // Set audio status
+            const agoraAudioStatus = sessionStorage.getItem('agora_audio_status');
+            if (agoraAudioStatus){
+                mediaStore.enableLocalAudio(JSON.parse(agoraAudioStatus));
+                setMicStatus(JSON.parse(agoraAudioStatus));
+            }
+
+            // Set video status
+            const agoraVideoStatus = sessionStorage.getItem('agora_video_status');
+            if (agoraVideoStatus){
+                mediaStore.enableLocalVideo(JSON.parse(agoraVideoStatus));
+                setVideoStatus(JSON.parse(agoraVideoStatus));
+            }
         }
-    });
+    }, [classroomStore.userStore.localUser?.userRole]);
 
     return (
         <Room>
@@ -282,19 +302,19 @@ export const MidClassScenario = observer(() => {
                                     <div className="sub-btn-wrap">
                                         {classroomStore.userStore.localUser?.userRole==EduRoleTypeEnum.teacher&&<div onClick={toggleMuteAll} className="share-btn">
                                             <a href="">
-                                                <img src={speakerStatus?speakerOff:speakerOn} alt="" />
+                                                <img src={speakerStatus?speakerOn:speakerOff} alt="" />
                                             </a>
                                             <p className="share-p text-center">Mute all <br/>students</p>
                                         </div>}
                                         <div onClick={toggleMuteSelf} className="share-btn">
                                             <a href="">
-                                                <img src={micStatus?micoff:micOn} alt="" />
+                                                <img src={micStatus?micOn:micoff} alt="" />
                                             </a>
                                             <p>{micStatus?'Off Mic':'On Mic'}</p>
                                         </div>
                                         <div onClick={toggleSelfVideo} className="share-btn">
                                             <a href="">
-                                                <img src={videoStatus?videoOff:videoOn} alt="" />
+                                                <img src={videoStatus?videoOn:videoOff} alt="" />
                                             </a>
                                             <p> {videoStatus?'Off Video':'On Video'}
                                             </p>
