@@ -738,17 +738,17 @@ export class ToolbarUIStore extends EduUIStoreBase {
           label: 'scaffold.move',
           icon: 'hand',
         }),
-        {
-          value: 'cloud',
-          label: 'scaffold.cloud_storage',
-          icon: 'cloud',
-        },
-        {
-          value: 'tools',
-          label: 'scaffold.tools',
-          icon: 'tools',
-          category: ToolbarItemCategory.Cabinet,
-        },
+        // {
+        //   value: 'cloud',
+        //   label: 'scaffold.cloud_storage',
+        //   icon: 'cloud',
+        // },
+        // {
+        //   value: 'tools',
+        //   label: 'scaffold.tools',
+        //   icon: 'tools',
+        //   category: ToolbarItemCategory.Cabinet,
+        // },
         {
           value: 'register',
           label: 'scaffold.register',
