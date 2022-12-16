@@ -67,7 +67,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 71px;
+  max-width: 65px;
 }
 
 .whiteboard-state {

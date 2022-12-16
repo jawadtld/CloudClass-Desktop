@@ -2607,6 +2607,7 @@ input:checked[type="checkbox"]::before {
 	height: calc(100vh - 195px);
     overflow-y: auto;
 	align-content: flex-start;
+	justify-content: flex-start;
 }
 
 .name-round {
