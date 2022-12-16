@@ -84,7 +84,6 @@ const DragableStream = observer(
               <DragableContainer
                 stream={stream}
                 visibleTools={!visibleStream(stream.stream.streamUuid)}
-                onDoubleClick={handleStreamDoubleClick}
                 toolbarPlacement="left"
               />
             </div>

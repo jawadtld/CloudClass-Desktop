@@ -114,7 +114,6 @@ export const TeacherStream = observer((props: { isFullScreen?: boolean }) => {
       <DragableContainer
         stream={teacherCameraStream}
         visibleTools={!visibleStream(teacherCameraStream.stream.streamUuid)}
-        onDoubleClick={handleStreamDoubleClick}
       />
     </div>
   ) : null;
@@ -123,13 +122,11 @@ export const TeacherStream = observer((props: { isFullScreen?: boolean }) => {
 export const DragableContainer = observer(
   ({
     stream,
-    onDoubleClick,
     visibleTools,
     toolbarPlacement,
   }: {
     stream: EduStreamUI;
     visibleTools: boolean;
-    onDoubleClick?: (...args: any) => void;
     toolbarPlacement?: 'left' | 'bottom';
   }) => {
     const [ref, bounds] = useMeasure();
@@ -169,7 +166,6 @@ export const DragableContainer = observer(
         <div
           ref={ref}
           {...bind(stream)}
-          onDoubleClick={visibleStream(stream.stream.streamUuid) ? () => {} : onDoubleClick}
           style={{
             touchAction: 'none',
             position: 'absolute',

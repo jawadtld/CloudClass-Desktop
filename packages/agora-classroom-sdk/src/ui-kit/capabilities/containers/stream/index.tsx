@@ -462,9 +462,6 @@ export const CarouselGroup = observer(
                   <DragableContainer
                     stream={stream}
                     visibleTools={!invisible(stream.stream.streamUuid)}
-                    onDoubleClick={() => {
-                      handleDBClick && handleDBClick(stream);
-                    }}
                   />
                 ) : null}
               </MeasuerContainer>
