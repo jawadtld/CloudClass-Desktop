@@ -38,8 +38,8 @@ export const en = {
     kick_out_student: 'Kick Out',
   },
   radio: {
-    kicked_once: 'Teacher has removed you from class.',
-    ban: 'Banned',
+    kicked_once: 'Only this time',
+    ban: 'Banned for this classroom',
   },
   course: {
     pre_class: 'Pre Class',
